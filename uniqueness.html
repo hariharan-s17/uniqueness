@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Block PLANDH | Uniqueness of the Solution</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5efe3;
+            color: #2f3028;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 17px 7%;
+
+            background: rgba(250, 246, 238, 0.94);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #ded4c2;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+
+            color: #3e5945;
+
+            letter-spacing: .5px;
+        }
+
+        .logo span {
+            color: #b17a43;
+        }
+
+        nav a {
+            color: #5b5a50;
+
+            text-decoration: none;
+
+            margin-left: 28px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #a66f3f;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 130px 8% 90px;
+
+            position: relative;
+
+            background:
+
+                radial-gradient(
+                    circle at 80% 20%,
+                    #e9dcc5 0%,
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at 10% 80%,
+                    #e5e1ce 0%,
+                    transparent 30%
+                ),
+
+                #f7f2e8;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 8px 18px;
+
+            border: 1px solid #b58a60;
+
+            border-radius: 30px;
+
+            color: #805c39;
+
+            background: #fffaf2;
+
+            font-size: 13px;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+
+            font-size: clamp(
+                48px,
+                7vw,
+                85px
+            );
+
+            line-height: 1.03;
+
+            margin-bottom: 25px;
+
+            color: #30382f;
+        }
+
+        .hero h1 span {
+
+            color: #a76e3f;
+        }
+
+        .hero-description {
+
+            max-width: 850px;
+
+            font-size: 20px;
+
+            color: #68675d;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-question {
+
+            font-size: 22px;
+
+            color: #3d4038;
+
+            border-left: 5px solid #a9784b;
+
+            padding-left: 20px;
+
+            max-width: 900px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+        section {
+
+            padding: 85px 0;
+        }
+
+        .section-title {
+
+            font-size: 38px;
+
+            margin-bottom: 15px;
+
+            color: #405545;
+        }
+
+        .section-subtitle {
+
+            color: #777568;
+
+            max-width: 800px;
+
+            margin-bottom: 40px;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           CORE CARD
+        ========================== */
+
+        .core-card {
+
+            padding: 45px;
+
+            border-radius: 24px;
+
+            background: #fffdf8;
+
+            border: 1px solid #ded4c2;
+
+            box-shadow:
+                0 18px 45px rgba(
+                    91,
+                    73,
+                    48,
+                    .08
+                );
+        }
+
+        .core-card h3 {
+
+            font-size: 28px;
+
+            color: #3e5945;
+
+            margin-bottom: 15px;
+        }
+
+        .core-card p {
+
+            color: #65645b;
+
+            font-size: 17px;
+        }
+
+        .big-statement {
+
+            margin-top: 30px;
+
+            font-size: 24px;
+
+            color: #795433;
+
+            padding: 25px;
+
+            background: #f7eddd;
+
+            border-left: 5px solid #b17a43;
+
+            border-radius: 12px;
+        }
+
+
+        /* =========================
+           FEATURE CARDS
+        ========================== */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(250px, 1fr)
+                );
+
+            gap: 20px;
+        }
+
+        .feature {
+
+            padding: 30px;
+
+            min-height: 250px;
+
+            background: #fffdf9;
+
+            border: 1px solid #ddd3c2;
+
+            border-radius: 20px;
+
+            transition: .3s;
+
+            box-shadow:
+                0 8px 25px rgba(
+                    100,
+                    80,
+                    50,
+                    .05
+                );
+        }
+
+        .feature:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color: #b99167;
+
+            box-shadow:
+                0 15px 35px rgba(
+                    130,
+                    95,
+                    55,
+                    .12
+                );
+        }
+
+        .feature-number {
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            color: #b27a46;
+
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+
+            font-size: 20px;
+
+            margin-bottom: 12px;
+
+            color: #405545;
+        }
+
+        .feature p {
+
+            color: #777568;
+        }
+
+
+        /* =========================
+           INTELLIGENCE ENGINE
+        ========================== */
+
+        .engine {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 30px;
+        }
+
+        .engine-card {
+
+            background: #fffdf8;
+
+            border: 1px solid #ded4c2;
+
+            padding: 35px;
+
+            border-radius: 20px;
+        }
+
+        .engine-card h3 {
+
+            color: #a76e3f;
+
+            margin-bottom: 20px;
+
+            font-size: 23px;
+        }
+
+        .engine-list {
+
+            list-style: none;
+        }
+
+        .engine-list li {
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #ebe3d5;
+
+            color: #68675d;
+        }
+
+        .engine-list li::before {
+
+            content: "✓";
+
+            color: #52735a;
+
+            margin-right: 10px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           WORKFLOW
+        ========================== */
+
+        .flow {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(6, 1fr);
+
+            gap: 10px;
+        }
+
+        .flow-step {
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            background: #fffdf8;
+
+            border: 1px solid #ddd3c2;
+
+            border-radius: 15px;
+        }
+
+        .flow-step .number {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                auto auto 15px;
+
+            border-radius: 50%;
+
+            background: #54735b;
+
+            color: white;
+
+            font-weight: bold;
+        }
+
+        .flow-step h4 {
+
+            color: #3f5143;
+
+            margin-bottom: 7px;
+        }
+
+        .flow-step p {
+
+            font-size: 13px;
+
+            color: #817e72;
+        }
+
+
+        /* =========================
+           EMERGENCY
+        ========================== */
+
+        .emergency {
+
+            padding: 45px;
+
+            border-radius: 25px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #eee2cf,
+                    #faf6ed
+                );
+
+            border: 1px solid #d6c5ab;
+        }
+
+        .emergency h2 {
+
+            color: #9a683d;
+
+            margin-bottom: 15px;
+        }
+
+        .emergency p {
+
+            color: #65645b;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           COMPARISON
+        ========================== */
+
+        .comparison {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .comparison-box {
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            background: #fffdf8;
+
+            border: 1px solid #ded4c2;
+        }
+
+        .comparison-box.old {
+
+            border-top:
+                5px solid #b28a72;
+        }
+
+        .comparison-box.new {
+
+            border-top:
+                5px solid #52735a;
+        }
+
+        .comparison-box h3 {
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+        .comparison-box.old h3 {
+
+            color: #8c6554;
+        }
+
+        .comparison-box.new h3 {
+
+            color: #52735a;
+        }
+
+        .comparison-box ul {
+
+            list-style: none;
+        }
+
+        .comparison-box li {
+
+            margin: 13px 0;
+
+            color: #777568;
+        }
+
+
+        /* =========================
+           THEORY
+        ========================== */
+
+        .theory {
+
+            background: #fffdf8;
+
+            border: 1px solid #ded4c2;
+
+            border-radius: 24px;
+
+            padding: 45px;
+
+            box-shadow:
+                0 15px 40px rgba(
+                    90,
+                    70,
+                    45,
+                    .06
+                );
+        }
+
+        .theory p {
+
+            font-size: 18px;
+
+            color: #68675d;
+        }
+
+
+        /* =========================
+           FINAL
+        ========================== */
+
+        .final {
+
+            text-align: center;
+
+            padding: 110px 20px;
+        }
+
+        .final h2 {
+
+            font-size: 45px;
+
+            margin-bottom: 25px;
+
+            color: #405545;
+        }
+
+        .final p {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            font-size: 22px;
+
+            color: #68675d;
+        }
+
+        .pitch {
+
+            margin:
+                40px auto 0;
+
+            max-width: 900px;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            background: #f1e6d5;
+
+            border: 1px solid #d1b995;
+
+            font-size: 24px;
+
+            color: #634a32;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+
+            text-align: center;
+
+            padding: 40px;
+
+            border-top:
+                1px solid #ddd3c2;
+
+            color: #858276;
+
+            background: #f1ebdf;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media(max-width: 900px) {
+
+            .engine,
+            .comparison {
+
+                grid-template-columns: 1fr;
+            }
+
+            .flow {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+        @media(max-width: 600px) {
+
+            nav a {
+
+                display: none;
+            }
+
+            .hero {
+
+                padding-top: 140px;
+            }
+
+            .flow {
+
+                grid-template-columns: 1fr;
+            }
+
+            .core-card,
+            .theory {
+
+                padding: 25px;
+            }
+
+            .section-title {
+
+                font-size: 30px;
+            }
+
+            .final h2 {
+
+                font-size: 34px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav>
+
+    <div class="logo">
+        Block <span>PLANDH</span>
+    </div>
+
+    <div>
+
+        <a href="#uniqueness">
+            Uniqueness
+        </a>
+
+        <a href="#features">
+            Innovations
+        </a>
+
+        <a href="#workflow">
+            Workflow
+        </a>
+
+        <a href="#difference">
+            Difference
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+
+            BLOCK PLANDH
+            •
+            SMART RAILWAY PLANNING
+
+        </div>
+
+
+        <h1>
+
+            Uniqueness
+            <br>
+
+            <span>of the Solution</span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Block PLANDH transforms railway maintenance
+            planning from manual block allocation into
+            intelligent discovery of the right maintenance
+            opportunity.
+
+        </p>
+
+
+        <div class="hero-question">
+
+            <strong>
+                Instead of asking:
+            </strong>
+
+            “When can we give a block?”
+
+            <br><br>
+
+            <strong>
+                Block PLANDH asks:
+            </strong>
+
+            “Where and when is a safe and feasible
+            maintenance opportunity available?”
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =========================
+     CORE UNIQUENESS
+========================== -->
+
+<section id="uniqueness">
+
+    <h2 class="section-title">
+
+        What Makes Block PLANDH Unique?
+
+    </h2>
+
+
+    <p class="section-subtitle">
+
+        The uniqueness is not simply the integration of
+        railway data. The innovation is how Block PLANDH
+        converts operational information into actionable
+        maintenance opportunities.
+
+    </p>
+
+
+    <div class="core-card">
+
+        <h3>
+
+            From Block Allocation
+            →
+            Opportunity Discovery
+
+        </h3>
+
+
+        <p>
+
+            Traditional maintenance planning generally starts
+            with a maintenance requirement and then manually
+            searches for a suitable block.
+
+            <br><br>
+
+            Block PLANDH reverses this process.
+
+            It analyses maintenance priority, work duration,
+            train timetable, current train movement,
+            route capacity, station information and
+            operational constraints to discover feasible
+            maintenance windows.
+
+        </p>
+
+
+        <div class="big-statement">
+
+            We don't simply decide
+
+            <strong>
+                “which block to give.”
+            </strong>
+
+            <br>
+
+            We intelligently discover
+
+            <strong>
+                “where the railway has an opportunity
+                to perform maintenance.”
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================== -->
+
+<section id="features">
+
+    <h2 class="section-title">
+
+        7 Unique Innovation Layers
+
+    </h2>
+
+
+    <p class="section-subtitle">
+
+        Block PLANDH combines multiple intelligence
+        layers into one railway maintenance planning system.
+
+    </p>
+
+
+    <div class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                01
+            </div>
+
+            <h3>
+                Opportunity-Based Planning
+            </h3>
+
+            <p>
+
+                Instead of depending only on predefined blocks,
+                Block PLANDH searches available train gaps
+                and identifies potential maintenance
+                opportunities.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                02
+            </div>
+
+            <h3>
+                Priority × Feasibility
+            </h3>
+
+            <p>
+
+                A critical maintenance task is matched with
+                a practically achievable window by analysing
+                urgency, duration and operational feasibility.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                03
+            </div>
+
+            <h3>
+                Train-Aware Intelligence
+            </h3>
+
+            <p>
+
+                Train schedules and current movement are
+                considered before a maintenance window
+                is recommended.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                04
+            </div>
+
+            <h3>
+                Junction-to-Junction Analysis
+            </h3>
+
+            <p>
+
+                Connected railway sections are considered
+                instead of analysing a maintenance location
+                in isolation.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                05
+            </div>
+
+            <h3>
+                Emergency Replanning
+            </h3>
+
+            <p>
+
+                When an urgent defect occurs,
+                Block PLANDH can reassess available
+                opportunities instead of rebuilding
+                the complete plan manually.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                06
+            </div>
+
+            <h3>
+                Explainable Recommendation
+            </h3>
+
+            <p>
+
+                The planner can understand why a window
+                was suggested using factors such as
+                available time, work duration and conflicts.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                07
+            </div>
+
+            <h3>
+                Human-in-the-Loop AI
+            </h3>
+
+            <p>
+
+                AI supports the decision while the
+                Control Office and Station Master
+                retain final operational authority.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INTELLIGENCE
+========================== -->
+
+<section>
+
+    <h2 class="section-title">
+
+        Intelligence Behind Block PLANDH
+
+    </h2>
+
+
+    <p class="section-subtitle">
+
+        Multiple railway factors are analysed together
+        before a maintenance opportunity is proposed.
+
+    </p>
+
+
+    <div class="engine">
+
+
+        <div class="engine-card">
+
+            <h3>
+                Maintenance Intelligence
+            </h3>
+
+            <ul class="engine-list">
+
+                <li>
+                    Maintenance priority
+                </li>
+
+                <li>
+                    Emergency requirements
+                </li>
+
+                <li>
+                    Work duration
+                </li>
+
+                <li>
+                    Asset / infrastructure requirement
+                </li>
+
+                <li>
+                    Planned and date-based work
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="engine-card">
+
+            <h3>
+                Railway Operational Intelligence
+            </h3>
+
+            <ul class="engine-list">
+
+                <li>
+                    Train timetable
+                </li>
+
+                <li>
+                    Current train movement
+                </li>
+
+                <li>
+                    Station information
+                </li>
+
+                <li>
+                    Route capacity
+                </li>
+
+                <li>
+                    Operational conflicts
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WORKFLOW
+========================== -->
+
+<section id="workflow">
+
+    <h2 class="section-title">
+
+        How Block PLANDH Works
+
+    </h2>
+
+
+    <p class="section-subtitle">
+
+        From railway data to a human-approved maintenance
+        opportunity.
+
+    </p>
+
+
+    <div class="flow">
+
+
+        <div class="flow-step">
+
+            <div class="number">
+                01
+            </div>
+
+            <h4>
+                Collect
+            </h4>
+
+            <p>
+                Gather railway maintenance and
+                operational information.
+            </p>
+
+        </div>
+
+
+        <div class="flow-step">
+
+            <div class="number">
+                02
+            </div>
+
+            <h4>
+                Prioritize
+            </h4>
+
+            <p>
+                Identify urgent and planned
+                maintenance requirements.
+            </p>
+
+        </div>
+
+
+        <div class="flow-step">
+
+            <div class="number">
+                03
+            </div>
+
+            <h4>
+                Analyse
+            </h4>
+
+            <p>
+                Understand train movement,
+                routes and station conditions.
+            </p>
+
+        </div>
+
+
+        <div class="flow-step">
+
+            <div class="number">
+                04
+            </div>
+
+            <h4>
+                Discover
+            </h4>
+
+            <p>
+                Find potential maintenance
+                time windows.
+            </p>
+
+        </div>
+
+
+        <div class="flow-step">
+
+            <div class="number">
+                05
+            </div>
+
+            <h4>
+                Validate
+            </h4>
+
+            <p>
+                Check operational conflicts
+                and constraints.
+            </p>
+
+        </div>
+
+
+        <div class="flow-step">
+
+            <div class="number">
+                06
+            </div>
+
+            <h4>
+                Approve
+            </h4>
+
+            <p>
+                Railway officials review
+                and approve the plan.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EMERGENCY
+========================== -->
+
+<section>
+
+    <div class="emergency">
+
+        <h2>
+
+            Emergency Maintenance Intelligence
+
+        </h2>
+
+
+        <p>
+
+            When an unexpected infrastructure defect is reported,
+            Block PLANDH can reassess the current railway situation
+            and identify potential maintenance opportunities.
+
+            Instead of manually checking every possible block,
+            the planner receives a structured recommendation
+            based on available operational windows.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COMPARISON
+========================== -->
+
+<section id="difference">
+
+    <h2 class="section-title">
+
+        Traditional Planning vs Block PLANDH
+
+    </h2>
+
+
+    <div class="comparison">
+
+
+        <div class="comparison-box old">
+
+            <h3>
+                Traditional Planning
+            </h3>
+
+
+            <ul>
+
+                <li>
+                    Maintenance requirement received
+                </li>
+
+                <li>
+                    Manual timetable checking
+                </li>
+
+                <li>
+                    Possible block identified
+                </li>
+
+                <li>
+                    Multiple teams coordinate
+                </li>
+
+                <li>
+                    Conflicts may be discovered later
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="comparison-box new">
+
+            <h3>
+                Block PLANDH
+            </h3>
+
+
+            <ul>
+
+                <li>
+                    Maintenance priority identified
+                </li>
+
+                <li>
+                    Train movement analysed
+                </li>
+
+                <li>
+                    Maintenance opportunities discovered
+                </li>
+
+                <li>
+                    Conflicts checked before recommendation
+                </li>
+
+                <li>
+                    Explainable plan sent for human approval
+                </li>
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     THEORY
+========================== -->
+
+<section>
+
+    <h2 class="section-title">
+
+        Theory Explanation
+
+    </h2>
+
+
+    <div class="theory">
+
+        <p>
+
+            <strong>
+                Block PLANDH
+            </strong>
+
+            transforms railway maintenance planning from
+            a static and manual scheduling process into a
+            dynamic, opportunity-driven decision-support
+            system.
+
+            <br><br>
+
+            The system combines maintenance priority,
+            work duration, train timetable, current train
+            movement, route capacity, station information
+            and operational constraints to identify feasible
+            maintenance windows.
+
+            <br><br>
+
+            Instead of simply allocating a predefined block,
+            Block PLANDH discovers suitable opportunities
+            between train movements and evaluates whether
+            a maintenance activity can practically fit
+            within that window.
+
+            <br><br>
+
+            The system can support planned, date-based and
+            emergency maintenance requirements while
+            identifying potential operational conflicts
+            before the proposed schedule reaches the
+            approval stage.
+
+            <br><br>
+
+            Most importantly, Block PLANDH follows a
+            <strong>
+                Human-in-the-Loop
+            </strong>
+
+            approach.
+
+            AI provides intelligent recommendations and
+            explanations, while the Control Office and
+            Station Master retain responsibility for
+            reviewing and approving the final operational
+            plan.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL PITCH
+========================== -->
+
+<section class="final">
+
+    <h2>
+
+        Block PLANDH
+
+    </h2>
+
+
+    <p>
+
+        From
+
+        <strong>
+            “Finding a Block”
+        </strong>
+
+        to
+
+        <strong>
+            “Discovering the Right Opportunity.”
+        </strong>
+
+    </p>
+
+
+    <div class="pitch">
+
+        “An intelligent railway planning layer that discovers
+        feasible maintenance opportunities from operational
+        conditions, explains the recommendation, and keeps
+        the final decision with authorized railway personnel.”
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    Automatic Block Planning for Railway Fixed Infrastructure Maintenance
+
+    <br><br>
+
+    <strong>
+        Block PLANDH • Team Code Nova
+    </strong>
+
+</footer>
+
+
+</body>
+</html>
